@@ -1,26 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= pageTitle %></title>
-    <link rel="stylesheet" href="/css/main.css">
+<%- include('includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/product.css">
 </head>
+
 <body>
-    <header class="main-header">
-        <nav class="main-header-nav">
-            <ul class="main-header-item-list">
-                <li class="main-header-item"><a href="/">Shop</a></li>
-                <li class="main-header-item"><a href="/admin/add-product">Add Product</a></li>
-            </ul>
-        </nav>
-    </header>
+    <%- include('includes/navigation.ejs') %>
+
     <main>
-        <% if(prods.length > 0) { %>
-        <h1>My Products</h1>
-        <p>List of all products here... Coming soon</p>
+        <% if (prods.length > 0) { %>
+            <div class="grid">
+                <% for (let product of prods) { %>
+                    <article class="card product-item">
+                        <header class="card__header">
+                            <h1 class="product__title"><%= product.title %></h1>
+                        </header>
+                        <div class="card__image">
+                             <img src="https://images-na.ssl-images-amazon.com/images/I/41UHen-IwaL._SX327_BO1,204,203,200_.jpg"  alt="A Book">
+                        </div>
+                        <div class="card__content">
+                            <h2 class="product__price">$19.99</h2>
+                            <p class="product__description">A very interesting book about so many even more interesting things!</p>
+                        </div>
+                        <div class="card__actions">
+                            <button class="btn">Add to Cart</button>
+                        </div>
+                    </article>
+                <% } %>
+            </div>
+        <% } else { %>
+            <h1>No Products Found!</h1>
         <% } %>
     </main>
-</body>
-</html>
+<%- include('includes/end.ejs') %>
